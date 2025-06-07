@@ -27,7 +27,7 @@ interface PomodoroState {
 
 const defaultTime = {
     work: 25 * 60,
-    shortBreak: 0.1 * 60,
+    shortBreak: 5 * 60,
     longBreak: 15 * 60,
 };
 
