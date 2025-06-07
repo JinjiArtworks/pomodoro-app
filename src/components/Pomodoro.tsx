@@ -11,6 +11,23 @@ export const Pomodoro = () => {
     const { timeLeft, isRunning, start, pause, reset, setTime, mode, setMode } = usePomodoroStore();
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
+    // Update document title based on mode and time
+    useEffect(() => {
+        let title = formatTime(timeLeft);
+        switch (mode) {
+            case "work":
+                title += " - Time to Focus!";
+                break;
+            case "shortBreak":
+                title += " - Time to break~";
+                break;
+            case "longBreak":
+                title += " - Go sebat first!";
+                break;
+        }
+        document.title = title;
+    }, [timeLeft, mode]);
+
     useEffect(() => {
         let interval: number | undefined;
         if (isRunning && timeLeft > 0) {
